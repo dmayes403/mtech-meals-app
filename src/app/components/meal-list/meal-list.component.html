@@ -1,1 +1,22 @@
-<p>meal-list works!</p>
+<div class="meal-container">
+    <div class="column-container">
+        <span>Desserts</span>
+        <div *ngFor="let dessert of desserts">
+            <mat-card>
+                <div>{{dessert.strMeal}}</div>
+                <div>{{dessert.strArea}}</div>
+                <img [src]="dessert.strMealThumb" alt="">
+            </mat-card>
+        </div>
+    </div>
+    <div class="column-container">
+        <span>American Meals</span>
+        <div *ngFor="let meal of americanMeals">
+            <mat-card>
+                <div>{{meal.strMeal}}</div>
+                <div>{{meal.strArea}}</div>
+                <img [src]="meal.strMealThumb" alt="">
+            </mat-card>
+        </div>
+    </div>
+</div>

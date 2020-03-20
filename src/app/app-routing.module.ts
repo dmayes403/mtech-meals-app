@@ -8,6 +8,8 @@ import { MealListComponent } from './components/meal-list/meal-list.component';
 const routes: Routes = [
   { path: '', component: WelcomeComponent},
   { path: 'meals', component: MealListComponent},
+  { path: 'meal-detail', component: MealDetailsComponent},
+  { path: 'meal-deatils/:id', component: MealDetailsComponent},
   { path: '**', redirectTo: 'meals', pathMatch: 'full'}
 ];
 

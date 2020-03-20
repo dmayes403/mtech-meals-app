@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MealListComponent } from './components/meal-list/meal-list.component';
 import { MealDetailsComponent } from './components/meal-details/meal-details.component';
@@ -22,7 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
