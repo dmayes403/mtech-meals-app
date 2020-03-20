@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class MealsService {
     mealsByFirstLetterUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?f=';
+    mealByIdUrl = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
     constructor(
         private http: HttpClient
@@ -17,6 +18,12 @@ export class MealsService {
         // return this.http.get(this.mealsByFirstLetterUrl + firstLetter);
         return this.http.get(`${this.mealsByFirstLetterUrl}${firstLetter}`).pipe(
             map(anything => anything['meals'])
+        );
+    }
+
+    getMealById(mealId: string): Observable<any> {
+        return this.http.get(`${this.mealByIdUrl}${mealId}`).pipe(
+            map(meal => meal['meals'][0])
         );
     }
 }

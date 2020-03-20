@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MealsService } from 'src/app/services/meals.service';
 import { combineLatest } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-meal-list',
@@ -13,7 +14,8 @@ export class MealListComponent implements OnInit {
   americanMeals: any[];
 
   constructor(
-    private mealsService: MealsService
+    private mealsService: MealsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,11 @@ export class MealListComponent implements OnInit {
       this.americanMeals = meals.filter(meal => meal.strArea === 'American');
       console.log(this.americanMeals);
     });
+  }
+
+  goToMealDetails(mealId: string) {
+    console.log(mealId);
+    this.router.navigate(['/meal-detail', {id: mealId}]);
   }
 
 }

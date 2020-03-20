@@ -1,7 +1,8 @@
 <div class="meal-container">
     <div class="column-container">
         <span>Desserts</span>
-        <div *ngFor="let dessert of desserts">
+        <div *ngFor="let dessert of desserts" [routerLink]="['/meal-details', dessert.idMeal]">
+        <!-- <div *ngFor="let dessert of desserts" routerLink="/meal-details/{{dessert.idMeal}}"> -->
             <mat-card>
                 <div>{{dessert.strMeal}}</div>
                 <div>{{dessert.strArea}}</div>
@@ -11,7 +12,7 @@
     </div>
     <div class="column-container">
         <span>American Meals</span>
-        <div *ngFor="let meal of americanMeals">
+        <div *ngFor="let meal of americanMeals" (click)="goToMealDetails(meal.idMeal)">
             <mat-card>
                 <div>{{meal.strMeal}}</div>
                 <div>{{meal.strArea}}</div>
