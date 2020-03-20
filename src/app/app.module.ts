@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MealListComponent } from './components/meal-list/meal-list.component';
 import { MealDetailsComponent } from './components/meal-details/meal-details.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MealDetailsComponent } from './components/meal-details/meal-details.com
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
