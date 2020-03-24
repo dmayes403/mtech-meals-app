@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -17,13 +17,25 @@ export class MealsService {
     getMealsByFirstLetter(firstLetter: string): Observable<any> {
         // return this.http.get(this.mealsByFirstLetterUrl + firstLetter);
         return this.http.get(`${this.mealsByFirstLetterUrl}${firstLetter}`).pipe(
-            map(anything => anything['meals'])
+            tap(meals => console.log(meals)),
+            map(meals => meals['meals'])
         );
     }
 
     getMealById(mealId: string): Observable<any> {
         return this.http.get(`${this.mealByIdUrl}${mealId}`).pipe(
-            map(meal => meal['meals'][0])
+            tap(meals => console.log(meals)),
+            map((meals: {meals: any[]}) => meals.meals[0])
         );
+    }
+
+    getAllCategories(): Observable<any> {
+        return this.http.get(`https://www.themealdb.com/api/json/v1/1/categories.php`).pipe(
+            map((categories: {categories: any[]}) => categories.categories)
+        );
+    }
+
+    getMealsByCategory(category: string): Observable<any> {
+        return this.http.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
     }
 }

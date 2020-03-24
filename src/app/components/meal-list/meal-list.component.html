@@ -1,23 +1,52 @@
-<div class="meal-container">
-    <div class="column-container">
-        <span>Desserts</span>
-        <div *ngFor="let dessert of desserts" [routerLink]="['/meal-details', dessert.idMeal]">
-        <!-- <div *ngFor="let dessert of desserts" routerLink="/meal-details/{{dessert.idMeal}}"> -->
-            <mat-card>
-                <div>{{dessert.strMeal}}</div>
-                <div>{{dessert.strArea}}</div>
-                <img [src]="dessert.strMealThumb" alt="">
-            </mat-card>
+<form action="" #mealForm="ngForm" (ngSubmit)="search()">
+    <div class="search">
+        <mat-form-field style="padding: 16px;">
+            <!-- <mat-select placeholder="Select a category" (selectionChange)="test()" name="selectedCategory" [(ngModel)]="selectedCategory"> -->
+            <mat-select placeholder="Select a category" name="selectedCategory" [(ngModel)]="selectedCategory">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let category of categories" [value]="category.strCategory">
+                    {{category.strCategory}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button style="max-height: 40px;"
+            [disabled]="mealForm.invalid">Search</button>
+    </div>
+
+    <div class="meal-container" *ngIf="!searched">
+        <div class="column-container">
+            <span>Desserts</span>
+            <div *ngFor="let dessert of desserts" [routerLink]="['/meal-details', dessert.idMeal]">
+            <!-- <div *ngFor="let dessert of desserts" routerLink="/meal-details/{{dessert.idMeal}}"> -->
+                <mat-card>
+                    <div>{{dessert.strMeal}}</div>
+                    <div>{{dessert.strArea}}</div>
+                    <img [src]="dessert.strMealThumb" alt="">
+                </mat-card>
+            </div>
+        </div>
+        <div class="column-container">
+            <span>American Meals</span>
+            <div *ngFor="let meal of americanMeals" (click)="goToMealDetails(meal.idMeal)">
+                <mat-card>
+                    <div>{{meal.strMeal}}</div>
+                    <div>{{meal.strArea}}</div>
+                    <img [src]="meal.strMealThumb" alt="">
+                </mat-card>
+            </div>
         </div>
     </div>
-    <div class="column-container">
-        <span>American Meals</span>
-        <div *ngFor="let meal of americanMeals" (click)="goToMealDetails(meal.idMeal)">
-            <mat-card>
-                <div>{{meal.strMeal}}</div>
-                <div>{{meal.strArea}}</div>
-                <img [src]="meal.strMealThumb" alt="">
-            </mat-card>
+
+    <div class="meal-container" *ngIf="selectedCategory && searched">
+        <div class="column-container">
+            <span>{{selectedCategory}}</span>
+            <div *ngFor="let meal of selectedMeals" [routerLink]="['/meal-details', meal.idMeal]">
+                <mat-card>
+                    <div>{{meal.strMeal}}</div>
+                    <img [src]="meal.strMealThumb" alt="">
+                </mat-card>
+            </div>
         </div>
     </div>
-</div>
+</form>
